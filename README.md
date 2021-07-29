@@ -22,7 +22,7 @@ A bot that automatically replies with funny memes everytime Elon Musk tweets.
 
 ```
 npm i
-node index.js
+npm start
 ```
 
 # 📝 License

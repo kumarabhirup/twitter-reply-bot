@@ -4,6 +4,7 @@
   "description": "A bot that automatically replies with funny memes everytime Elon Musk tweets.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kumar Abhirup <kumarabhirup5@gmail.com>",
@@ -14,5 +15,6 @@
     "http": "^0.0.1-security",
     "simple-json-db": "^1.2.3",
     "twit": "^2.2.11"
-  }
+  },
+  "engines": { "node": "14.x" }
 }
