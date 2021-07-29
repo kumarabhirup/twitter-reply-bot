@@ -10,7 +10,8 @@ const db = new JsonDB('db.json', { jsonSpaces: 2 })
 const { settings } = db.JSON()
 const personalUserId = settings?.personal?.id
 const personalScreenName = settings?.personal?.screenName
-const userIdsToStream = settings?.personal?.userIdsToStream // elon musk - 44196397 // mkbhd - 29873662
+const userIdsToStream = settings?.userIdsToStream
+const shouldReplyToReplies = settings?.shouldReplyToReplies
 
 const T = new Twit({
   consumer_key:         process.env.TWITTER_CONSUMER_KEY,
@@ -34,8 +35,6 @@ async function reply(
   // attachmentUrl = null
 ) {
   const tweetId = tweet?.id_str
-  // const userScreenName = tweet?.user?.screen_name
-  // const userScreenNameWithAt = `@${userScreenName}`
 
   let mediaIds = []
   await asyncForEach(mediaUrls, (async url => {
@@ -54,7 +53,6 @@ async function reply(
     // attachment_url: attachmentUrl
   })
 
-  // console.log({ replyTweet })
   return replyTweet
 }
 
@@ -62,9 +60,6 @@ async function everythingAsyncHere() {
   const stream = T.stream('statuses/filter', { follow: userIdsToStream })
   
   stream.on('tweet', async function (tweet) {
-    // const detailedTweetLookup = await T.get(`/2/tweets/${tweet?.id}`)
-    // console.log(JSON.stringify(detailedTweetLookup, null, 2))
-
     if (
       // Only reply if the tweet is from Elon,
       userIdsToStream?.includes(tweet?.user?.id_str) && 
@@ -80,10 +75,11 @@ async function everythingAsyncHere() {
         )) &&
 
       // and if less than 4 users are mentioned.
-      tweet?.entities?.user_mentions?.length < 4
-    ) {
-      // console.log({ tweet })
+      tweet?.entities?.user_mentions?.length < 4 &&
 
+      // decide whether to reply based on if the tweet is a reply
+      (shouldReplyToReplies ? true : (tweet?.in_reply_to_user_id_str ? false : true))
+    ) {
       // Pick random meme from db and reply
       const { memes } = db.JSON()
       const randomTweet = memes?.find(
@@ -135,31 +131,3 @@ const server = createServer((_req, res) => {
 server.listen(3000)
 
 console.log(`Listening on port 3000, connected to Twitter user @${personalScreenName}`)
-
-// const fakeTweet = {
-//   id_str: '1419887504715489286',
-//   user: {
-//     screen_name: 'mrwtfdude'
-//   }
-// }
-
-// [
-//   {
-//     "id": 1,
-//     "mediaUrls": [
-//       "https://cms.qz.com/wp-content/uploads/2018/07/meme-featured.jpg"
-//     ],
-//     "text": "😂",
-//     "targets": ["elonmusk", "mrwtfdude"],
-//     "isSent": false
-//   },
-//   {
-//     "id": 2,
-//     "mediaUrls": [
-//       "https://cms.qz.com/wp-content/uploads/2018/07/meme-featured.jpg"
-//     ],
-//     "text": "",
-//     "targets": ["elonmusk", "mrwtfdude"],
-//     "isSent": false
-//   }
-// ]

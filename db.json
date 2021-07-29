@@ -4,7 +4,11 @@
       "id": "714495413026316288",
       "screenName": "kumar_abhirup"
     },
-    "userIdsToStream": ["44196397", "29873662"]
+    "userIdsToStream": [
+      "44196397",
+      "29873662"
+    ],
+    "shouldReplyToReplies": false
   },
   "memes": [
     {
@@ -27,6 +31,17 @@
       "targets": [
         "elonmusk",
         "MKBHD"
+      ],
+      "isSent": false
+    },
+    {
+      "id": 3,
+      "mediaUrls": [
+        "https://i.ibb.co/G56YsLr/meme.jpg"
+      ],
+      "text": "",
+      "targets": [
+        "*"
       ],
       "isSent": false
     }
