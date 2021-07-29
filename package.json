@@ -1,13 +1,13 @@
 {
-  "name": "twitterreplybot",
+  "name": "twitter-reply-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "A bot that automatically replies with funny memes everytime Elon Musk tweets.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Kumar Abhirup <kumarabhirup5@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@prismicio/client": "^5.1.0",
     "axios": "^0.21.1",
