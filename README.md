@@ -18,9 +18,10 @@ A bot that automatically replies with funny memes everytime Elon Musk tweets.
 
 - Add your own memes with updated id (increment it by 1 and maintain the sequence), you may also add Image/Video URLs, tweet text, and target usernames (use `*` to target all target User IDs). Keep `isSent` to `false` when adding a new meme else it won't be tweeted.
 
-- Run the below command and keep it running
+- Run the below commands to start the bot.
 
 ```
+npm i
 node index.js
 ```
 
