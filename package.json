@@ -9,12 +9,9 @@
   "author": "Kumar Abhirup <kumarabhirup5@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@prismicio/client": "^5.1.0",
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "http": "^0.0.1-security",
-    "isomorphic-unfetch": "^3.1.0",
-    "prismic-dom": "^2.2.5",
     "simple-json-db": "^1.2.3",
     "twit": "^2.2.11"
   }
