@@ -5,8 +5,7 @@
       "screenName": "kumar_abhirup"
     },
     "userIdsToStream": [
-      "44196397",
-      "29873662"
+      "1389201793918201856"
     ],
     "shouldReplyToReplies": false
   },
@@ -20,7 +19,7 @@
       "targets": [
         "*"
       ],
-      "isSent": false
+      "isSent": true
     },
     {
       "id": 2,
@@ -43,7 +42,7 @@
       "targets": [
         "*"
       ],
-      "isSent": false
+      "isSent": true
     }
   ]
 }

@@ -64,6 +64,9 @@ async function everythingAsyncHere() {
       // Only reply if the tweet is from Elon,
       userIdsToStream?.includes(tweet?.user?.id_str) && 
 
+      // and if this isn't a retweet
+      !tweet?.retweeted_status &&
+
       // and if the Tweet isn't a reply to you, 
       ![...userIdsToStream, personalUserId].includes(tweet?.in_reply_to_user_id_str) && 
 
@@ -81,7 +84,8 @@ async function everythingAsyncHere() {
       (shouldReplyToReplies ? true : (tweet?.in_reply_to_user_id_str ? false : true))
     ) {
       // Pick random meme from db and reply
-      const { memes } = db.JSON()
+      const memesDb = new JsonDB('db.json', { jsonSpaces: 2 })
+      const { memes } = memesDb.JSON()
       const randomTweet = memes?.find(
         meme => !meme?.isSent && (
         meme?.targets?.includes(tweet?.user?.screen_name) || 
@@ -103,7 +107,7 @@ async function everythingAsyncHere() {
         // For successful reply, mark meme as 'sent' in the database
         randomTweet.isSent = true
         memes[randomTweet?.id - 1] = randomTweet
-        db.set("memes", memes)
+        memesDb.set("memes", memes)
 
         console.log(`@${tweet?.user?.screen_name} tweeted (https://twitter.com/${tweet?.user?.screen_name}/status/${tweet?.id_str}), replied successfully (https://twitter.com/${personalScreenName}/status/${replyTweet?.data?.id_str}).`)
         return
