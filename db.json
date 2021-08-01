@@ -5,7 +5,7 @@
       "screenName": "kumar_abhirup"
     },
     "userIdsToStream": [
-      "1389201793918201856"
+      "44196397"
     ],
     "shouldReplyToReplies": false
   },
@@ -19,7 +19,7 @@
       "targets": [
         "*"
       ],
-      "isSent": true
+      "isSent": false
     },
     {
       "id": 2,
@@ -28,8 +28,7 @@
       ],
       "text": "",
       "targets": [
-        "elonmusk",
-        "MKBHD"
+        "elonmusk"
       ],
       "isSent": false
     },
@@ -42,7 +41,7 @@
       "targets": [
         "*"
       ],
-      "isSent": true
+      "isSent": false
     }
   ]
 }
