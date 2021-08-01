@@ -2,7 +2,10 @@ require('dotenv').config()
 
 const Twit = require('twit')
 const axios = require('axios')
-const { createServer } = require('http')
+const express = require('express')
+const path = require('path')
+
+const app = express()
 
 const JsonDB = require('simple-json-db')
 const db = new JsonDB('db.json', { jsonSpaces: 2 })
@@ -124,7 +127,9 @@ async function everythingAsyncHere() {
 
 everythingAsyncHere()
 
-const server = createServer((_req, res) => {
+app.use('/settings', express.static(path.join(__dirname, 'db.json')))
+
+app.get('/', (_req, res) => {
   res.writeHead(302, {
     Location: `https://twitter.com/${personalScreenName}`
   })
@@ -132,6 +137,6 @@ const server = createServer((_req, res) => {
   res.end()
 })
 
-server.listen(3000)
+app.listen(3000)
 
 console.log(`Listening on port 3000, connected to Twitter user @${personalScreenName}`)
